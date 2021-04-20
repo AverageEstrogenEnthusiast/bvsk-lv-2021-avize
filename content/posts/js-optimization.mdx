@@ -234,7 +234,7 @@ var data = {
 data[something] && data[something]();
 ```
 
-# 14. Implicit Return Shorthand
+# 14. Netieša atgriešanās shorthand
 
 Izmantojot arrow funkcijas, mēs varam tieši atgriezt vērtību, nerakstot atgriešanas apgalvojumu.
 
@@ -249,62 +249,83 @@ calculate = diameter => (
 )
 ```
 
-# 17. Decimal base exponents
+# 15. Decimāldaļas bāzes eksponenti
 
+```javascript
+// Longhand
+for (var i = 0; i < 10000; i++) { ... }
+
+// Shorthand
+for (var i = 0; i < 1e4; i++) { ... }
 ```
 
+# 16. Noklusējuma parametru vērtības
+
+```javascript
+//Longhand
+function add(test1, test2) {
+  if (test1 === undefined)
+    test1 = 1;
+  if (test2 === undefined)
+    test2 = 2;
+  return test1 + test2;
+}
+//shorthand
+add = (test1 = 1, test2 = 2) => (test1 + test2);
+add() //output: 3
 ```
 
-**If you are looking to Optimize your JavaScript code using modern techniques, tips, and tricks check out this article.**
+# 17. Izplašanās operatora shorthand
 
-## [42 Tips and Tricks to Write Faster, Better-Optimized JavaScript Code](https://medium.com/javascript-in-plain-english/42-tips-and-tricks-to-write-faster-better-optimized-javascript-code-3a82c53d051e)
-
-### [Optimize your JavaScript code using modern techniques, tips, and tricks](https://medium.com/javascript-in-plain-english/42-tips-and-tricks-to-write-faster-better-optimized-javascript-code-3a82c53d051e)
-
-[medium.com](https://medium.com/javascript-in-plain-english/42-tips-and-tricks-to-write-faster-better-optimized-javascript-code-3a82c53d051e)
-
-# 18. Default Parameter Values
-
+```javascript
+//longhand
+// joining arrays using concat
+const data = [1, 2, 3];
+const test = [4 ,5 , 6].concat(data);
+//shorthand
+// joining arrays
+const data = [1, 2, 3];
+const test = [4 ,5 , 6, ...data];
+console.log(test); // [ 4, 5, 6, 1, 2, 3]
 ```
 
+Arī klonēšanai mēs varam izmantot izplatīšanas operatoru.
+
+```javascript
+//longhand
+
+// cloning arrays
+const test1 = [1, 2, 3];
+const test2 = test1.slice()
+//shorthand
+
+// cloning arrays
+const test1 = [1, 2, 3];
+const test2 = [...test1];
 ```
 
-# 19. Spread Operator Shorthand
+# 18. Veidņu literāļi
 
+Ja jums ir apnicis izmantot +, lai apvienotu vairākus mainīgos vienā virknē, šis saīsinājums noņem jūsu galvassāpes.
+
+```javascript
+//longhand
+const welcome = 'Hi ' + test1 + ' ' + test2 + '.'
+//shorthand
+const welcome = `Hi ${test1} ${test2}`;
 ```
 
-```
-
-For cloning also we can use a spread operator.
-
-```
-
-```
-
-# 20. Template Literals
-
-If you have tired of using + to concatenate multiple variables in a single string then this shorthand removes your headache.
-
-```
-
-```
-
-**How to Remove Duplicates from an Array or Array of Objects in JavaScript**
-
-## [How to Remove Duplicates from an Array or Array of Objects in JavaScript](https://medium.com/javascript-in-plain-english/how-to-remove-duplicates-from-an-array-or-array-of-objects-in-javascript-9ab417cb9667)
-
-### [I always used to prefer something like a newspaper which give enough information in a shorter span of time. Here, I…](https://medium.com/javascript-in-plain-english/how-to-remove-duplicates-from-an-array-or-array-of-objects-in-javascript-9ab417cb9667)
-
-[medium.com](https://medium.com/javascript-in-plain-english/how-to-remove-duplicates-from-an-array-or-array-of-objects-in-javascript-9ab417cb9667)
-
-# 21. Multi-line String Shorthand
+# 19. Multi-line String Shorthand
 
 When we are dealing with a multi-line string in code we can go for this function:
 
-Longhand:
-
-```
-
+```javascript
+//longhand
+const data = 'abc abc abc abc abc abc\n\t'
+    + 'test test,test test test test\n\t'
+//shorthand
+const data = `abc abc abc abc abc abc
+         test test,test test test test`
 ```
 
 # 22. Object Property Assignment
