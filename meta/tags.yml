@@ -19,3 +19,5 @@ tags:
     name: nodejs
   - slug: js
     name: javascript
+  - slug: web
+    name: web
