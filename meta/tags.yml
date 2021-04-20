@@ -17,3 +17,5 @@ tags:
     name: express
   - slug: nodejs
     name: nodejs
+  - slug: js
+    name: javascript
