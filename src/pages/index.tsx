@@ -13,7 +13,7 @@ export default function Index() {
       <div className="container">
         <div>
           <h1>
-            <span className="fancy">BVSK</span> avīze „Vārds”
+            <span className="fancy">BVSK</span> avīze „includes(info)”
           </h1>
           <h2>Skolnieku veidota avīze par programmēšanu</h2>
           <SocialList />
