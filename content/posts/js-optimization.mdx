@@ -1,0 +1,548 @@
+---
+slug: js-optimization
+title: JS optimizācijas tehnikas 2021 gadā
+date: 2021-04-20
+author: gabriels
+tags:
+  - js
+---
+Izstrādātājs vienmēr mācās jaunas lietas, un sekot izmaiņām nevajadzētu būt grūtāk nekā tas jau ir. Mans motīvs ir iepazīstināt jūs ar visām labākajām praksēm JavaScript valodā, kuras jums jāzina kā frontend izstrādātājam lai atvieglot jūsu dzīvi 2021. gadā.
+
+![](https://miro.medium.com/max/1200/0*K49jVcTGrpgm_5mX.png)
+
+Iespējams ka jūs ilgu laiku izstrādājat ar JS, taču dažreiz jūs, iespējams, netiksiet informēti par jaunām funkcijām, kas var atrisināt jūsu problēmas nerakstot papildu kodu. Šīs metodes var jums palīdzēt uzrakstīt tīru un optimizētu JS kodu. Turklāt šīs tēmas var palīdzēt jums sagatavoties JS intervijām 2021. gadā.
+
+# 1. If ar vairākiem stāvokļiem
+
+Mēs varam array saglabāt vairākas vērtības, un mēs varam izmantot `Array.includes()` metodi.
+
+```javascript
+//longhand
+if (x === 'abc' || x === 'def' || x === 'ghi' || x ==='jkl') {
+    //logic
+}
+//saīsinājums
+if (['abc', 'def', 'ghi', 'jkl'].includes(x)) {
+   //logic
+}
+```
+
+# 2. If true … else saīsinājums
+
+Šis ir lielāks saīsinājums ja ir if-else nosacījumi kuri neiekļauj lielākas loģikas. Mēs varam vienkārši izmantot ternary operatorus lai sasniegtu šo.
+
+```javascript
+// Longhand
+let test: boolean;
+if (x > 100) {
+    test = true;
+} else {
+    test = false;
+}
+// saīsinājums
+let test = (x > 10) ? true : false;
+//or we can use directly
+let test = x > 10;
+console.log(test);
+```
+
+Kad mums ir ligzdoti apstākļi, mēs varam darīt šādi:
+
+```javascript
+let x = 300,
+test2 = (x > 100) ? 'greater 100' : (x < 50) ? 'less 50' : 'between 50 and 100';
+console.log(test2); // "greater than 100"
+```
+
+# 3. Mainīgo deklarēšana
+
+Kad mēs vēlamies deklarēt divus mainīgos, kuriem ir kopēja vērtība vai veids, mēs varam izmantot šo saīsinājumu.
+
+```javascript
+//Longhand 
+let test1;
+let test2 = 1;
+//saīsinājums 
+let test1, test2 = 1;
+```
+
+# 4. Null, Undefined, Empty pārbaude
+
+Veidojot jaunus mainīgos, dažreiz mēs vēlamies pārbaudīt, vai mainīgais uz kura vērtību atsaucamies, nav null vai nav definēts. JS ir ļoti labs saīsinājums lai sasniegtu šīs funkcijas.
+
+```javascript
+// Longhand
+if (test1 !== null || test1 !== undefined || test1 !== '') {
+    let test2 = test1;
+}
+// Saīsinājums
+let test2 = test1 || '';
+```
+
+# 5. Null vērtības pārbaude un noklusējuma vērtības piešķiršana
+
+```javascript
+let test1 = null,
+    test2 = test1 || '';
+console.log("null check", test2); // izejošais būs ""
+```
+
+# 6. Vērtību piešķiršana vairākiem mainīgajiem
+
+Kad mēs strādājam ar vairākiem mainīgajiem un gribam piešķirt atšķirīgas vērtības dažādiem mainīgajiem, šī tehnika ir ļoti noderīga.
+
+```javascript
+//Longhand 
+let test1, test2, test3;
+test1 = 1;
+test2 = 2;
+test3 = 3;
+//saīsinājums 
+let [test1, test2, test3] = [1, 2, 3];
+```
+
+# 7. Uzdevuma operatoru saīsinājums
+
+Mēs nodarbojamies ar daudz aritmētiskiem operatoriem. Šī ir viena no noderīgajām metodēm priekš uzdevumu operatoriem mainīgajiem.
+
+```javascript
+// Longhand
+test1 = test1 + 1;
+test2 = test2 - 1;
+test3 = test3 * 20;
+// saīsinājums
+test1++;
+test2--;
+test3 *= 20;
+```
+
+# 8. If klātbūtnes saīsinājums
+
+Šis ir viens no izplatītākajiem saīsinājumiem kuru mēs visi izmantojam, taču tomēr ir vērts šeit pieminēt.
+
+```javascript
+// Longhand
+if (test1 === true) or if (test1 !== "") or if (test1 !== null)
+
+// saīsinājums //arī pārbaudīs vai ir tukša virkne, null vai nav definēts
+if (test1)
+```
+
+# 9. UN (&&) operatora priekš vairākiem stāvokļiem
+
+Ja mēs izsaucam funkciju tikai ja mainīgais ir patiess, tad mēs varam izmantot `&&` operatoru.
+
+```javascript
+//Longhand 
+if (test1) {
+ callMethod(); 
+} 
+//saīsinājums 
+test1 && callMethod();
+```
+
+# 10. foreach cilpas saīsinājums
+
+Šī ir viena no izplatītākajām īsās tehnikas iterācija.
+
+```javascript
+// Longhand
+for (var i = 0; i < testData.length; i++)
+
+// saīsinājums
+for (let i in testData) or for (let i of testData)
+```
+
+Array katram mainīgajam
+
+```javascript
+function testData(element, index, array) {
+  console.log('test[' + index + '] = ' + element);
+}
+
+[11, 24, 32].forEach(testData);
+// logs: test[0] = 11, test[1] = 24, test[2] = 32
+```
+
+# 11. Arrow funkcijas
+
+```javascript
+//Longhand 
+function add(a, b) { 
+   return a + b; 
+} 
+//saīsinājums 
+const add = (a, b) => a + b;
+```
+
+Vairāk piemēri.
+
+```javascript
+function callMe(name) {
+  console.log('Hello', name);
+}
+callMe = name => console.log('Hello', name);
+```
+
+# 12. Īsu funkciju izsaukšana
+
+Mēs varam izmantot ternary operatoru lai sasniegtu šīs funkcijas.
+
+```javascript
+// Longhand
+function test1() {
+  console.log('test1');
+};
+function test2() {
+  console.log('test2');
+};
+var test3 = 1;
+if (test3 == 1) {
+  test1();
+} else {
+  test2();
+}
+// saīsinājums
+(test3 === 1? test1 : test2)();
+```
+
+# 13. Switch saīsinājums
+
+Mēs varam saglabāt nosacījumus atslēgas-vērtības objektos, un tos var izmantot pamatojoties uz nosacījumiem.
+
+```javascript
+// Longhand
+switch (data) {
+  case 1:
+    test1();
+  break;
+
+  case 2:
+    test2();
+  break;
+
+  case 3:
+    test();
+  break;
+  // Un tā tālāk...
+}
+
+// saīsinājums
+var data = {
+  1: test1,
+  2: test2,
+  3: test
+};
+
+data[something] && data[something]();
+```
+
+# 14. Netiešas atgriešanās saīsinājums
+
+Izmantojot arrow funkcijas, mēs varam tieši atgriezt vērtību, nerakstot atgriešanas apgalvojumu.
+
+```javascript
+//longhand
+function calculate(diameter) {
+  return Math.PI * diameter
+}
+//saīsinājums
+calculate = diameter => (
+  Math.PI * diameter;
+)
+```
+
+# 15. Decimāldaļas bāzes eksponenti
+
+```javascript
+// Longhand
+for (var i = 0; i < 10000; i++) { ... }
+
+// saīsinājums
+for (var i = 0; i < 1e4; i++) { ... }
+```
+
+# 16. Noklusējuma parametru vērtības saīsinājums
+
+```javascript
+//Longhand
+function add(test1, test2) {
+  if (test1 === undefined)
+    test1 = 1;
+  if (test2 === undefined)
+    test2 = 2;
+  return test1 + test2;
+}
+//saīsinājums
+add = (test1 = 1, test2 = 2) => (test1 + test2);
+add() //output: 3
+```
+
+# 17. Izplašanās operatora saīsinājums
+
+```javascript
+//longhand
+// joining arrays using concat
+const data = [1, 2, 3];
+const test = [4 ,5 , 6].concat(data);
+
+//saīsinājums
+// joining arrays
+const data = [1, 2, 3];
+const test = [4 ,5 , 6, ...data];
+console.log(test); // [ 4, 5, 6, 1, 2, 3]
+```
+
+Arī klonēšanai mēs varam izmantot izplatīšanas operatoru.
+
+```javascript
+//longhand
+// klonējot arrays
+const test1 = [1, 2, 3];
+const test2 = test1.slice()
+
+//saīsinājums
+// klonējot arrays
+const test1 = [1, 2, 3];
+const test2 = [...test1];
+```
+
+# 18. Veidņu literāļu saīsinājums
+
+Ja jums ir apnicis izmantot +, lai apvienotu vairākus mainīgos vienā virknē, šis saīsinājums noņem jūsu galvassāpes.
+
+```javascript
+//longhand
+const welcome = 'Hi ' + test1 + ' ' + test2 + '.'
+//saīsinājums
+const welcome = `Hi ${test1} ${test2}`;
+```
+
+# 19. Vairāku rindu virknes saīsinājums
+
+Kad mēs strādājam ar vairāku rindu virkni kodā, mēs varam izmantot šo funkciju:
+
+```javascript
+//longhand
+const data = 'abc abc abc abc abc abc\n\t'
+    + 'test test,test test test test\n\t'
+//saīsinājums
+const data = `abc abc abc abc abc abc
+         test test,test test test test`
+```
+
+# 20. Objekta rekvizītu piešķiršanas saīsinājums
+
+```javascript
+let test1 = 'a'; 
+let test2 = 'b';
+//Longhand 
+let obj = {test1: test1, test2: test2}; 
+
+//saīsinājums 
+let obj = {test1, test2};
+```
+
+# 21. Virkne uz ciparu saīsinājums
+
+```javascript
+//Longhand 
+let test1 = parseInt('123'); 
+let test2 = parseFloat('12.3'); 
+
+//saīsinājums 
+let test1 = +'123'; 
+let test2 = +'12.3';
+```
+
+# 22. Pārstrukturēšanas uzdevuma saīsinājums
+
+```javascript
+//longhand
+const test1 = this.data.test1;
+const test2 = this.data.test2;
+const test2 = this.data.test3;
+
+//saīsinājums
+const { test1, test2, test3 } = this.data;
+```
+
+# 23. Array.find saīsinājums
+
+Kad mums ir array ar objectiem un mēs gribam atrast konkrētu objektu pamatojoties uz objekta īpašībām, `find()` metode ir ļoti noderīga.
+
+```javascript
+const data = [{
+        type: 'test1',
+        name: 'abc'
+    },
+    {
+        type: 'test2',
+        name: 'cde'
+    },
+    {
+        type: 'test1',
+        name: 'fgh'
+    },
+]
+function findtest1(name) {
+    for (let i = 0; i < data.length; ++i) {
+        if (data[i].type === 'test1' && data[i].name === name) {
+            return data[i];
+        }
+    }
+}
+
+//saīsinājums
+filteredData = data.find(data => data.type === 'test1' && data.name === 'fgh');
+console.log(filteredData); // { type: 'test1', name: 'fgh' }
+```
+
+# 24. Uzmeklēšanas nosacījumu saīsinājums
+
+Ja mums ir kods lai pārbaudītu veidu, un, pamatojoties uz tipu, ir jāizsauc dažādas metodes, mums vai nu ir iespēja izmantot vairākus `else if` vai pāriet uz `switch`, bet ja nu mums būtu labāks saīsinājums par to?
+
+```javascript
+// Longhand
+if (type === 'test1') {
+  test1();
+}
+else if (type === 'test2') {
+  test2();
+}
+else if (type === 'test3') {
+  test3();
+}
+else if (type === 'test4') {
+  test4();
+} else {
+  throw new Error('Invalid value ' + type);
+}
+
+// saīsinājums
+var types = {
+  test1: test1,
+  test2: test2,
+  test3: test3,
+  test4: test4
+};
+ 
+var func = types[type];
+(!func) && throw new Error('Invalid value ' + type); func();
+```
+
+# 25. Bitwise IndexOf saīsinājums
+
+Kad mēs atkārtojam array lai atrastu noteiktu vērtību, mēs izmantojam `indexOf()` metodi. Ko darīt ja mēs tam atradīsim labāku pieeju? Apskatīsim piemēru.
+
+```javascript
+//longhand
+if(arr.indexOf(item) > -1) { // item found 
+}
+if(arr.indexOf(item) === -1) { // item not found
+}
+
+//saīsinājums
+if(~arr.indexOf(item)) { // item found
+}
+if(!~arr.indexOf(item)) { // item not found
+}
+```
+
+Operators `bitwise(~)` atgriezīs patiesu vērtību jebkuram citam izņemot `-1`. Noliegt to ir tikpat vienkārši kā darīt `!~`. Alternatīvi, mēs varam izmantot arī `includes()` funkciju.
+
+```javascript
+if (arr.includes(item)) { 
+// patiess ja item ir atrasts
+}
+```
+
+# 26. Object.entries()
+
+Šī funkcija palīdz pārveidot objectu uz objektu array.
+
+```javascript
+const data = { test1: 'abc', test2: 'cde', test3: 'efg' };
+const arr = Object.entries(data);
+console.log(arr);
+/** Output:
+[ [ 'test1', 'abc' ],
+  [ 'test2', 'cde' ],
+  [ 'test3', 'efg' ]
+]
+**/
+```
+
+# 27. Object.values()
+
+Šī arī ir jauna ES8 ieviesta funkcija, kas veic līdzīgu funkciju kā `Object.entries()`, bet bez atslēgdaļas
+
+```javascript
+const data = { test1: 'abc', test2: 'cde' };
+const arr = Object.values(data);
+console.log(arr);
+/** Output:
+[ 'abc', 'cde']
+**/
+```
+
+# 28. Dubult bitwise saīsinājums
+
+**(Dubult bitwise NĒ operatora pieeja tikai strāda priekš 32-bitu integer )**
+
+```javascript
+// Longhand
+Math.floor(1.9) === 1 // true
+
+// saīsinājums
+~~1.9 === 1 // true
+```
+
+# 29. Atkārtot virkni vairākas reizes
+
+Lai atkārtotu tās pašas rakstzīmes atkal un atkal, mēs varam izmantot for ciklu un pievienot tos tajā pašā cilpā, bet ko darīt ja mums tam ir saīsinājums?
+
+```javascript
+//longhand 
+let test = ''; 
+for(let i = 0; i < 5; i ++) { 
+  test += 'test '; 
+} 
+console.log(str); // test test test test test 
+
+//saīsinājums 
+'test '.repeat(5);
+```
+
+# 30. Atrast mazāko un lielāko skaitli iekšā array
+
+```javascript
+const arr = [1, 2, 3]; 
+Math.max(…arr); // 3
+Math.min(…arr); // 1
+```
+
+# 31. Dabūt burtu no virknes
+
+```javascript
+let str = 'abc';
+//Longhand 
+str.charAt(2); // c
+
+//saīsinājums 
+str[2]; // c
+```
+
+P.S: Ja mēs zinām array indeksu, tad rakstzīmes vietā mēs varam tieši izmantot indeksu. Ja mēs neesam pārliecināti par indeksu, tas var izmest undefined.
+
+# 32. Spēka saīsinājums
+
+Saīsinājums Math eksponenta spēka funkcijai:
+
+```javascript
+//longhand
+Math.pow(2,3); // 8
+
+//saīsinājums
+2**3 // 8
+```
