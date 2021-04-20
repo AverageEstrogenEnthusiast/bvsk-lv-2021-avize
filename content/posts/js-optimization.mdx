@@ -10,26 +10,24 @@ Izstrādātājs vienmēr mācās jaunas lietas, un sekot izmaiņām nevajadzētu
 
 ![](https://miro.medium.com/max/1200/0*K49jVcTGrpgm_5mX.png)
 
-You might be doing JavaScript development for a long time but sometimes you might be not updated with the newest features which can solve your issues without doing or writing some extra codes. These techniques can help you to write clean and optimized JavaScript Code. Moreover, these topics can help you to prepare yourself for JavaScript interviews in 2021.
-
 Iespējams ka jūs ilgu laiku izstrādājat ar JS, taču dažreiz jūs, iespējams, netiksiet informēti par jaunām funkcijām, kas var atrisināt jūsu problēmas nerakstot papildu kodu. Šīs metodes var jums palīdzēt uzrakstīt tīru un optimizētu JS kodu. Turklāt šīs tēmas var palīdzēt jums sagatavoties JS intervijām 2021. gadā.
 
-# 1. If with multiple conditions
+# 1. If ar vairākiem stāvokļiem
 
-Mēs varam array saglabāt vairākas vērtības, un mēs varam izmantot array includes metodi.
+Mēs varam array saglabāt vairākas vērtības, un mēs varam izmantot `Array.includes()` metodi.
 
 ```javascript
 //longhand
 if (x === 'abc' || x === 'def' || x === 'ghi' || x ==='jkl') {
     //logic
 }
-//shorthand
+//saīsinājums
 if (['abc', 'def', 'ghi', 'jkl'].includes(x)) {
    //logic
 }
 ```
 
-# 2. If true … else Shorthand
+# 2. If true … else saīsinājums
 
 Šis ir lielāks saīsinājums ja ir if-else nosacījumi kuri neiekļauj lielākas loģikas. Mēs varam vienkārši izmantot ternary operatorus lai sasniegtu šo.
 
@@ -41,7 +39,7 @@ if (x > 100) {
 } else {
     test = false;
 }
-// Shorthand
+// saīsinājums
 let test = (x > 10) ? true : false;
 //or we can use directly
 let test = x > 10;
@@ -56,28 +54,28 @@ test2 = (x > 100) ? 'greater 100' : (x < 50) ? 'less 50' : 'between 50 and 100';
 console.log(test2); // "greater than 100"
 ```
 
-# 3. Variable deklarēšana
+# 3. Mainīgo deklarēšana
 
-Kad mēs vēlamies deklarēt divus mainīgos, kuriem ir kopēja vērtība vai tips, mēs varam izmantot šo shorthand.
+Kad mēs vēlamies deklarēt divus mainīgos, kuriem ir kopēja vērtība vai veids, mēs varam izmantot šo saīsinājumu.
 
 ```javascript
 //Longhand 
 let test1;
 let test2 = 1;
-//Shorthand 
+//saīsinājums 
 let test1, test2 = 1;
 ```
 
 # 4. Null, Undefined, Empty pārbaude
 
-Veidojot jaunus mainīgos, dažreiz mēs vēlamies pārbaudīt, vai mainīgais uz kura vērtību atsaucamies, nav null vai nav definēts. JS ir ļoti labs shorthand lai sasniegtu šīs funkcijas.
+Veidojot jaunus mainīgos, dažreiz mēs vēlamies pārbaudīt, vai mainīgais uz kura vērtību atsaucamies, nav null vai nav definēts. JS ir ļoti labs saīsinājums lai sasniegtu šīs funkcijas.
 
 ```javascript
 // Longhand
 if (test1 !== null || test1 !== undefined || test1 !== '') {
     let test2 = test1;
 }
-// Shorthand
+// Saīsinājums
 let test2 = test1 || '';
 ```
 
@@ -89,9 +87,9 @@ let test1 = null,
 console.log("null check", test2); // izejošais būs ""
 ```
 
-# 6. Vērtību piešķiršana vairākiem variable
+# 6. Vērtību piešķiršana vairākiem mainīgajiem
 
-Kad mēs strādājam ar vairākiem mainīgajiem un gribam piešķirt atšķirīgas vērtības dažādiem variable, šī tehnika ir ļoti noderīga.
+Kad mēs strādājam ar vairākiem mainīgajiem un gribam piešķirt atšķirīgas vērtības dažādiem mainīgajiem, šī tehnika ir ļoti noderīga.
 
 ```javascript
 //Longhand 
@@ -99,46 +97,51 @@ let test1, test2, test3;
 test1 = 1;
 test2 = 2;
 test3 = 3;
-//Shorthand 
+//saīsinājums 
 let [test1, test2, test3] = [1, 2, 3];
 ```
 
-# 7. Uzdevuma operatoru shorthand
+# 7. Uzdevuma operatoru saīsinājums
 
-Mēs nodarbojamies ar daudz aritmētiskiem operatoriem. Šī ir viena no noderīgajām metodēm priekš uzdevumu operatoriem priekš mainīgā.
+Mēs nodarbojamies ar daudz aritmētiskiem operatoriem. Šī ir viena no noderīgajām metodēm priekš uzdevumu operatoriem mainīgajiem.
 
 ```javascript
 // Longhand
 test1 = test1 + 1;
 test2 = test2 - 1;
 test3 = test3 * 20;
-// Shorthand
+// saīsinājums
 test1++;
 test2--;
 test3 *= 20;
 ```
 
-# 8. If klātbūtnes shorthand
+# 8. If klātbūtnes saīsinājums
 
-Šis ir viens no izplatītākajiem shorthand kuru mēs visi izmantojam, taču tomēr ir vērts šeit pieminēt.
+Šis ir viens no izplatītākajiem saīsinājumiem kuru mēs visi izmantojam, taču tomēr ir vērts šeit pieminēt.
 
 ```javascript
 // Longhand
 if (test1 === true) or if (test1 !== "") or if (test1 !== null)
 
-// Shorthand //it will check empty string,null and undefined too
+// saīsinājums //arī pārbaudīs vai ir tukša virkne, null vai nav definēts
 if (test1)
 ```
 
-# 9. UN (&&) operators priekš vairākiem stāvokļiem
+# 9. UN (&&) operatora priekš vairākiem stāvokļiem
 
 Ja mēs izsaucam funkciju tikai ja mainīgais ir patiess, tad mēs varam izmantot `&&` operatoru.
 
 ```javascript
-
+//Longhand 
+if (test1) {
+ callMethod(); 
+} 
+//saīsinājums 
+test1 && callMethod();
 ```
 
-# 10. foreach cilpas Shorthand
+# 10. foreach cilpas saīsinājums
 
 Šī ir viena no izplatītākajām īsās tehnikas iterācija.
 
@@ -146,8 +149,8 @@ Ja mēs izsaucam funkciju tikai ja mainīgais ir patiess, tad mēs varam izmanto
 // Longhand
 for (var i = 0; i < testData.length; i++)
 
-// Shorthand
-for (let i in testData) or  for (let i of testData)
+// saīsinājums
+for (let i in testData) or for (let i of testData)
 ```
 
 Array katram mainīgajam
@@ -168,7 +171,7 @@ function testData(element, index, array) {
 function add(a, b) { 
    return a + b; 
 } 
-//Shorthand 
+//saīsinājums 
 const add = (a, b) => a + b;
 ```
 
@@ -181,7 +184,7 @@ function callMe(name) {
 callMe = name => console.log('Hello', name);
 ```
 
-# 12. Short Function Calling
+# 12. Īsu funkciju izsaukšana
 
 Mēs varam izmantot ternary operatoru lai sasniegtu šīs funkcijas.
 
@@ -199,13 +202,13 @@ if (test3 == 1) {
 } else {
   test2();
 }
-// Shorthand
+// saīsinājums
 (test3 === 1? test1 : test2)();
 ```
 
-# 13. Switch shorthands
+# 13. Switch saīsinājums
 
-Mēs varam saglabāt nosacījumus atslēgas-vērtīas objektos, un tos var izmantot pamatojoties uz nosacījumiem.
+Mēs varam saglabāt nosacījumus atslēgas-vērtības objektos, un tos var izmantot pamatojoties uz nosacījumiem.
 
 ```javascript
 // Longhand
@@ -224,7 +227,7 @@ switch (data) {
   // Un tā tālāk...
 }
 
-// Shorthand
+// saīsinājums
 var data = {
   1: test1,
   2: test2,
@@ -234,7 +237,7 @@ var data = {
 data[something] && data[something]();
 ```
 
-# 14. Netieša atgriešanās shorthand
+# 14. Netiešas atgriešanās saīsinājums
 
 Izmantojot arrow funkcijas, mēs varam tieši atgriezt vērtību, nerakstot atgriešanas apgalvojumu.
 
@@ -243,7 +246,7 @@ Izmantojot arrow funkcijas, mēs varam tieši atgriezt vērtību, nerakstot atgr
 function calculate(diameter) {
   return Math.PI * diameter
 }
-//shorthand
+//saīsinājums
 calculate = diameter => (
   Math.PI * diameter;
 )
@@ -255,7 +258,7 @@ calculate = diameter => (
 // Longhand
 for (var i = 0; i < 10000; i++) { ... }
 
-// Shorthand
+// saīsinājums
 for (var i = 0; i < 1e4; i++) { ... }
 ```
 
@@ -270,7 +273,7 @@ function add(test1, test2) {
     test2 = 2;
   return test1 + test2;
 }
-//shorthand
+//saīsinājums
 add = (test1 = 1, test2 = 2) => (test1 + test2);
 add() //output: 3
 ```
@@ -282,7 +285,8 @@ add() //output: 3
 // joining arrays using concat
 const data = [1, 2, 3];
 const test = [4 ,5 , 6].concat(data);
-//shorthand
+
+//saīsinājums
 // joining arrays
 const data = [1, 2, 3];
 const test = [4 ,5 , 6, ...data];
@@ -293,13 +297,12 @@ Arī klonēšanai mēs varam izmantot izplatīšanas operatoru.
 
 ```javascript
 //longhand
-
-// cloning arrays
+// klonējot arrays
 const test1 = [1, 2, 3];
 const test2 = test1.slice()
-//shorthand
 
-// cloning arrays
+//saīsinājums
+// klonējot arrays
 const test1 = [1, 2, 3];
 const test2 = [...test1];
 ```
@@ -311,7 +314,7 @@ Ja jums ir apnicis izmantot +, lai apvienotu vairākus mainīgos vienā virknē,
 ```javascript
 //longhand
 const welcome = 'Hi ' + test1 + ' ' + test2 + '.'
-//shorthand
+//saīsinājums
 const welcome = `Hi ${test1} ${test2}`;
 ```
 
@@ -323,7 +326,7 @@ Kad mēs strādājam ar vairāku rindu virkni kodā, mēs varam izmantot šo fun
 //longhand
 const data = 'abc abc abc abc abc abc\n\t'
     + 'test test,test test test test\n\t'
-//shorthand
+//saīsinājums
 const data = `abc abc abc abc abc abc
          test test,test test test test`
 ```
@@ -335,7 +338,8 @@ let test1 = 'a';
 let test2 = 'b';
 //Longhand 
 let obj = {test1: test1, test2: test2}; 
-//Shorthand 
+
+//saīsinājums 
 let obj = {test1, test2};
 ```
 
@@ -345,7 +349,8 @@ let obj = {test1, test2};
 //Longhand 
 let test1 = parseInt('123'); 
 let test2 = parseFloat('12.3'); 
-//Shorthand 
+
+//saīsinājums 
 let test1 = +'123'; 
 let test2 = +'12.3';
 ```
@@ -357,13 +362,14 @@ let test2 = +'12.3';
 const test1 = this.data.test1;
 const test2 = this.data.test2;
 const test2 = this.data.test3;
-//shorthand
+
+//saīsinājums
 const { test1, test2, test3 } = this.data;
 ```
 
 # 23. Array.find saīsinājums
 
-Kad mums ir array ar objectiem un mēs gribam atrast konkrētu objektu pamatojoties uz objekta īpašībām, find metode ir ļoti noderīga.
+Kad mums ir array ar objectiem un mēs gribam atrast konkrētu objektu pamatojoties uz objekta īpašībām, `find()` metode ir ļoti noderīga.
 
 ```javascript
 const data = [{
@@ -387,7 +393,7 @@ function findtest1(name) {
     }
 }
 
-//Shorthand
+//saīsinājums
 filteredData = data.find(data => data.type === 'test1' && data.name === 'fgh');
 console.log(filteredData); // { type: 'test1', name: 'fgh' }
 ```
@@ -412,7 +418,8 @@ else if (type === 'test4') {
 } else {
   throw new Error('Invalid value ' + type);
 }
-// Shorthand
+
+// saīsinājums
 var types = {
   test1: test1,
   test2: test2,
@@ -434,7 +441,8 @@ if(arr.indexOf(item) > -1) { // item found
 }
 if(arr.indexOf(item) === -1) { // item not found
 }
-//shorthand
+
+//saīsinājums
 if(~arr.indexOf(item)) { // item found
 }
 if(!~arr.indexOf(item)) { // item not found
@@ -445,7 +453,7 @@ Operators `bitwise(~)` atgriezīs patiesu vērtību jebkuram citam izņemot `-1`
 
 ```javascript
 if (arr.includes(item)) { 
-// true if the item found
+// patiess ja item ir atrasts
 }
 ```
 
@@ -467,7 +475,7 @@ console.log(arr);
 
 # 27. Object.values()
 
-Šī arī ir jauna ES8 ieviesta funkcija, kas veic līdzīgu kā `Object.entries()`, bet bez atslēgdaļas
+Šī arī ir jauna ES8 ieviesta funkcija, kas veic līdzīgu funkciju kā `Object.entries()`, bet bez atslēgdaļas
 
 ```javascript
 const data = { test1: 'abc', test2: 'cde' };
@@ -486,7 +494,7 @@ console.log(arr);
 // Longhand
 Math.floor(1.9) === 1 // true
 
-// Shorthand
+// saīsinājums
 ~~1.9 === 1 // true
 ```
 
@@ -501,7 +509,8 @@ for(let i = 0; i < 5; i ++) {
   test += 'test '; 
 } 
 console.log(str); // test test test test test 
-//shorthand 
+
+//saīsinājums 
 'test '.repeat(5);
 ```
 
@@ -519,19 +528,21 @@ Math.min(…arr); // 1
 let str = 'abc';
 //Longhand 
 str.charAt(2); // c
-//Shorthand 
+
+//saīsinājums 
 str[2]; // c
 ```
 
 P.S: Ja mēs zinām array indeksu, tad rakstzīmes vietā mēs varam tieši izmantot indeksu. Ja mēs neesam pārliecināti par indeksu, tas var izmest undefined.
 
-# 32. Power Shorthand
+# 32. Spēka saīsinājums
 
-Saīsinājums Math eksponenta jaudas funkcijai:
+Saīsinājums Math eksponenta spēka funkcijai:
 
 ```javascript
 //longhand
 Math.pow(2,3); // 8
-//shorthand
+
+//saīsinājums
 2**3 // 8
 ```
