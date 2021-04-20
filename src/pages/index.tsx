@@ -15,7 +15,7 @@ export default function Index() {
           <h1>
             <span className="fancy">BVSK</span> avīze „Vārds”
           </h1>
-          <h2>Avīzi izveidoja students un BVSK neatbalsta šo avīzi</h2>
+          <h2>Skolnieku veidota avīze par programmēšanu</h2>
           <SocialList />
         </div>
       </div>
