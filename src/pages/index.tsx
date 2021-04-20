@@ -13,7 +13,7 @@ export default function Index() {
       <div className="container">
         <div>
           <h1>
-            <span className="fancy">BVSK</span> avīze ❝Vārds❞
+            <span className="fancy">BVSK</span> avīze „Vārds”
           </h1>
           <h2>Avīzi izveidoja students un BVSK neatbalsta šo avīzi</h2>
           <SocialList />
